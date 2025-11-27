@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "match.schema.json",
+  "title": "Match",
+  "description": "A contest between two players",
+  "type": "object",
+  "required": ["id", "tournamentId", "stage", "roundNumber", "player1Id", "player2Id", "frames", "status", "bestOf", "isByeMatch", "createdAt", "updatedAt"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "tournamentId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "poolId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "roundId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "stage": {
+      "type": "string",
+      "enum": ["pool", "winner-bracket", "consolation-bracket"]
+    },
+    "roundNumber": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "player1Id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "player2Id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "frames": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Frame"
+      }
+    },
+    "winnerId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "in-progress", "complete"]
+    },
+    "bestOf": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 11
+    },
+    "isByeMatch": {
+      "type": "boolean",
+      "default": false
+    },
+    "nextMatchId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "loserMatchId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "Frame": {
+      "type": "object",
+      "required": ["id", "matchId", "frameNumber", "winnerId"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "matchId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "frameNumber": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "winnerId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    }
+  }
+}

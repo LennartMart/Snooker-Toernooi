@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "season.schema.json",
+  "title": "Season",
+  "description": "A collection of tournaments culminating in a Masters finale",
+  "type": "object",
+  "required": ["id", "name", "year", "tournamentIds", "settings", "createdAt", "updatedAt"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Season name (e.g., '2024-2025')"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 2000,
+      "maximum": 2100,
+      "description": "Starting year"
+    },
+    "tournamentIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "description": "References to tournaments in this season"
+    },
+    "settings": {
+      "$ref": "#/definitions/SeasonSettings"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp"
+    }
+  },
+  "definitions": {
+    "SeasonSettings": {
+      "type": "object",
+      "required": ["breakThreshold", "mastersBreakThreshold", "mastersQualifiers", "participationPoints"],
+      "properties": {
+        "breakThreshold": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 147,
+          "default": 20,
+          "description": "Minimum break value to record"
+        },
+        "mastersBreakThreshold": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 147,
+          "default": 25,
+          "description": "Minimum break for Masters statistics"
+        },
+        "mastersQualifiers": {
+          "type": "integer",
+          "minimum": 4,
+          "maximum": 32,
+          "default": 16,
+          "description": "Number of players qualifying for Masters"
+        },
+        "participationPoints": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 10,
+          "description": "Bonus points for tournament participation"
+        }
+      }
+    }
+  }
+}

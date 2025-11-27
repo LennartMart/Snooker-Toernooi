@@ -1,0 +1,292 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "tournament.schema.json",
+  "title": "Tournament",
+  "description": "A single competition event with pools, knockout rounds, and final rankings",
+  "type": "object",
+  "required": ["id", "seasonId", "name", "date", "format", "status", "config", "playerIds", "pools", "brackets", "rankings", "createdAt", "updatedAt"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "seasonId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "format": {
+      "type": "string",
+      "enum": ["regular", "masters"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "pools", "knockout", "complete"]
+    },
+    "config": {
+      "$ref": "#/definitions/TournamentConfig"
+    },
+    "playerIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      }
+    },
+    "pools": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Pool"
+      }
+    },
+    "brackets": {
+      "$ref": "#/definitions/Brackets"
+    },
+    "rankings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Ranking"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "definitions": {
+    "TournamentConfig": {
+      "type": "object",
+      "required": ["playerCount", "poolCount", "playersPerPool", "poolFrames", "knockoutFormats", "drawType", "tiebreakers"],
+      "properties": {
+        "playerCount": {
+          "type": "integer",
+          "minimum": 4,
+          "maximum": 64,
+          "default": 32
+        },
+        "poolCount": {
+          "type": "integer",
+          "enum": [2, 4, 8, 16],
+          "default": 8
+        },
+        "playersPerPool": {
+          "type": "integer",
+          "minimum": 3,
+          "maximum": 8,
+          "default": 4
+        },
+        "poolFrames": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 7,
+          "default": 1
+        },
+        "knockoutFormats": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 11
+          }
+        },
+        "drawType": {
+          "type": "string",
+          "enum": ["random", "seeded"],
+          "default": "random"
+        },
+        "tiebreakers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["head-to-head", "matches-won", "highest-break", "shootout"]
+          },
+          "default": ["head-to-head", "highest-break", "shootout"]
+        }
+      }
+    },
+    "Pool": {
+      "type": "object",
+      "required": ["id", "name", "tournamentId", "playerIds", "matchIds", "standings", "isFinalized"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "tournamentId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "playerIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "matchIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "standings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PoolStanding"
+          }
+        },
+        "isFinalized": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "PoolStanding": {
+      "type": "object",
+      "required": ["position", "playerId", "played", "won", "lost", "framesFor", "framesAgainst", "highestBreak"],
+      "properties": {
+        "position": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "playerId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "played": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "won": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "lost": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "framesFor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "framesAgainst": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "highestBreak": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0
+        },
+        "shootoutPosition": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "Brackets": {
+      "type": "object",
+      "properties": {
+        "winner": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/KnockoutRound"
+          }
+        },
+        "consolation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/KnockoutRound"
+          }
+        }
+      }
+    },
+    "KnockoutRound": {
+      "type": "object",
+      "required": ["id", "tournamentId", "bracket", "roundNumber", "name", "positionRange", "matchIds", "bestOf"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "tournamentId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "bracket": {
+          "type": "string",
+          "enum": ["winner", "consolation"]
+        },
+        "roundNumber": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "name": {
+          "type": "string"
+        },
+        "positionRange": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "matchIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "bestOf": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "Ranking": {
+      "type": "object",
+      "required": ["position", "playerId", "positionPoints", "participationPoints", "totalPoints"],
+      "properties": {
+        "position": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64
+        },
+        "playerId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "positionPoints": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "participationPoints": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "totalPoints": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  }
+}

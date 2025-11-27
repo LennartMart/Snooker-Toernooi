@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "player.schema.json",
+  "title": "Player",
+  "description": "A tournament participant",
+  "type": "object",
+  "required": ["id", "name", "isBye", "createdAt"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Player display name"
+    },
+    "isBye": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if placeholder bye"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "break.schema.json",
+  "title": "Break",
+  "description": "A high scoring run in snooker",
+  "type": "object",
+  "required": ["id", "tournamentId", "matchId", "playerId", "value", "createdAt"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier"
+    },
+    "tournamentId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to tournament"
+    },
+    "matchId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to match"
+    },
+    "playerId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Player who made the break"
+    },
+    "value": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 147,
+      "description": "Break value"
+    },
+    "frameNumber": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Frame in which break occurred"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When break was recorded"
+    }
+  }
+}
