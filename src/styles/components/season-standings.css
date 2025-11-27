@@ -1,0 +1,698 @@
+/**
+ * Season Standings & Masters Styles
+ * Styles for season standings, breaks, and Masters qualification page
+ */
+
+/* ============ Season Standings Table ============ */
+
+.season-standings {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.season-standings__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-gray-50);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.season-standings__title {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  color: var(--color-text-primary);
+}
+
+.season-standings__legend {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.season-standings__legend-item {
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+}
+
+.season-standings__legend-item--qualifying {
+  background: var(--color-success-light);
+  color: var(--color-success-dark);
+}
+
+/* Table */
+
+.season-standings__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.season-standings__table thead th {
+  background: var(--color-gray-100);
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.season-standings__table tbody td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.season-standings__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Column alignment */
+
+.season-standings__col-pos,
+.season-standings__col-points,
+.season-standings__col-tournaments,
+.season-standings__col-best,
+.season-standings__col-avg {
+  text-align: center;
+}
+
+.season-standings__col-pos {
+  width: 50px;
+}
+
+.season-standings__col-points {
+  width: 80px;
+}
+
+.season-standings__col-tournaments,
+.season-standings__col-best,
+.season-standings__col-avg {
+  width: 70px;
+}
+
+.season-standings__col-status {
+  width: 120px;
+  text-align: center;
+}
+
+/* Row states */
+
+.season-standings__row {
+  transition: background-color 0.15s ease;
+}
+
+.season-standings__row:hover {
+  background: var(--color-gray-50);
+}
+
+.season-standings__row[tabindex="0"]:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+/* Position highlighting */
+
+.season-standings__row--leader {
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.2) 0%, transparent 100%);
+}
+
+.season-standings__row--leader:hover {
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.3) 0%, var(--color-gray-50) 100%);
+}
+
+.season-standings__row--qualifying {
+  background: linear-gradient(90deg, rgba(34, 197, 94, 0.1) 0%, transparent 100%);
+}
+
+.season-standings__row--qualifying:hover {
+  background: linear-gradient(90deg, rgba(34, 197, 94, 0.15) 0%, var(--color-gray-50) 100%);
+}
+
+.season-standings__row--bubble {
+  background: linear-gradient(90deg, rgba(251, 191, 36, 0.1) 0%, transparent 100%);
+}
+
+.season-standings__row--bubble:hover {
+  background: linear-gradient(90deg, rgba(251, 191, 36, 0.15) 0%, var(--color-gray-50) 100%);
+}
+
+/* Cell styles */
+
+.season-standings__cell--number {
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.season-standings__cell--points {
+  text-align: center;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.season-standings__cell--player {
+  font-weight: var(--font-weight-medium);
+}
+
+/* Status badges */
+
+.season-standings__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.season-standings__badge--qualified {
+  background: var(--color-success-light);
+  color: var(--color-success-dark);
+}
+
+.season-standings__badge--bubble {
+  background: var(--color-warning-light);
+  color: var(--color-warning-dark);
+}
+
+.season-standings__badge--out {
+  color: var(--color-text-muted);
+}
+
+/* Footer */
+
+.season-standings__footer {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-gray-50);
+  border-top: 1px solid var(--color-border);
+}
+
+.season-standings__summary {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* ============ Compact Season Standings ============ */
+
+.season-standings-compact {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+}
+
+.season-standings-compact__title {
+  margin: 0 0 var(--spacing-sm);
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+}
+
+.season-standings-compact__list {
+  margin: 0;
+  padding: 0 0 0 var(--spacing-lg);
+}
+
+.season-standings-compact__item {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-xs) 0;
+}
+
+.season-standings-compact__name {
+  font-weight: var(--font-weight-medium);
+}
+
+.season-standings-compact__points {
+  color: var(--color-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============ Qualification Cutline ============ */
+
+.qualification-cutline {
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.qualification-cutline__above,
+.qualification-cutline__below {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) 0;
+}
+
+.qualification-cutline__above {
+  color: var(--color-success);
+}
+
+.qualification-cutline__below {
+  color: var(--color-text-muted);
+}
+
+.qualification-cutline__line {
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-warning), var(--color-error));
+  margin: var(--spacing-sm) 0;
+}
+
+.qualification-cutline__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  min-width: 120px;
+}
+
+.qualification-cutline__player {
+  flex: 1;
+  font-weight: var(--font-weight-bold);
+}
+
+.qualification-cutline__points {
+  font-variant-numeric: tabular-nums;
+}
+
+.qualification-cutline__gap {
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+}
+
+/* ============ Season Breaks ============ */
+
+.season-breaks {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.season-breaks__header {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-gray-50);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.season-breaks__title {
+  margin: 0 0 var(--spacing-xs);
+  font-size: var(--font-size-xl);
+  color: var(--color-text-primary);
+}
+
+.season-breaks__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.season-breaks__stat {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.season-breaks__stat--centuries {
+  color: var(--color-success);
+  font-weight: var(--font-weight-medium);
+}
+
+.season-breaks__stat--highest {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.season-breaks__content {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.season-breaks__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  background: var(--color-gray-50);
+  transition: background-color 0.15s ease;
+}
+
+.season-breaks__item:hover {
+  background: var(--color-gray-100);
+}
+
+.season-breaks__rank {
+  min-width: 32px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.season-breaks__value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 32px;
+  padding: 0 var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  font-variant-numeric: tabular-nums;
+  background: var(--color-gray-200);
+  color: var(--color-text-primary);
+}
+
+.season-breaks__value--fifty {
+  background: var(--color-info-light);
+  color: var(--color-info-dark);
+}
+
+.season-breaks__value--century {
+  background: var(--color-success-light);
+  color: var(--color-success-dark);
+}
+
+.season-breaks__value--maximum {
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  color: #4a3000;
+}
+
+.season-breaks__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.season-breaks__player {
+  font-weight: var(--font-weight-medium);
+}
+
+.season-breaks__tournament {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.season-breaks__badge {
+  font-size: var(--font-size-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-full);
+  background: var(--color-success-light);
+  color: var(--color-success-dark);
+  text-transform: uppercase;
+}
+
+.season-breaks__date {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.season-breaks__empty {
+  padding: var(--spacing-xl);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.season-breaks__footer {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+/* ============ Compact Season Breaks ============ */
+
+.season-breaks-compact {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+}
+
+.season-breaks-compact__title {
+  margin: 0 0 var(--spacing-sm);
+  font-size: var(--font-size-md);
+}
+
+.season-breaks-compact__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.season-breaks-compact__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) 0;
+}
+
+.season-breaks-compact__value {
+  min-width: 40px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.season-breaks-compact__player {
+  flex: 1;
+}
+
+.season-breaks-compact__tournament {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* ============ Break Leaders ============ */
+
+.break-leaders {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+}
+
+.break-leaders__title {
+  margin: 0 0 var(--spacing-md);
+  font-size: var(--font-size-lg);
+}
+
+.break-leaders__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.break-leaders__table th,
+.break-leaders__table td {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  text-align: left;
+}
+
+.break-leaders__table th {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ============ Century Makers ============ */
+
+.century-makers {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.century-makers__title {
+  margin: 0 0 var(--spacing-md);
+  font-size: var(--font-size-lg);
+  color: var(--color-success);
+}
+
+.century-makers__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.century-makers__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background: var(--color-gray-50);
+  border-radius: var(--radius-sm);
+}
+
+.century-makers__player {
+  flex: 1;
+  font-weight: var(--font-weight-medium);
+}
+
+.century-makers__count {
+  color: var(--color-success);
+  font-weight: var(--font-weight-bold);
+}
+
+.century-makers__highest {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* ============ Masters Page ============ */
+
+.page--masters {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+.masters-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.masters-header__title {
+  margin: 0 0 var(--spacing-xs);
+  font-size: var(--font-size-3xl);
+}
+
+.masters-header__subtitle {
+  margin: 0 0 var(--spacing-md);
+  color: var(--color-text-muted);
+}
+
+.masters-header__actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+/* Summary cards */
+
+.masters-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.masters-summary__card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+
+.masters-summary__card--highlight {
+  border-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-surface));
+}
+
+.masters-summary__card--break {
+  border-color: var(--color-success);
+  background: linear-gradient(135deg, var(--color-success-light), var(--color-surface));
+}
+
+.masters-summary__value {
+  display: block;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  line-height: 1;
+  margin-bottom: var(--spacing-xs);
+}
+
+.masters-summary__label {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.masters-summary__sub {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-xs);
+}
+
+.masters-summary__sub--highlight {
+  color: var(--color-success);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Content grid */
+
+.masters-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+}
+
+.masters-section {
+  min-width: 0;
+}
+
+.masters-section h2 {
+  margin: 0 0 var(--spacing-md);
+  font-size: var(--font-size-xl);
+}
+
+.masters-cutline {
+  margin-top: var(--spacing-md);
+}
+
+.masters-centuries {
+  margin-top: var(--spacing-lg);
+}
+
+/* ============ Responsive ============ */
+
+@media (max-width: 1024px) {
+  .masters-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .page--masters {
+    padding: var(--spacing-md);
+  }
+
+  .masters-header__title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .masters-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .masters-summary__value {
+    font-size: var(--font-size-2xl);
+  }
+
+  .season-standings__table th,
+  .season-standings__table td {
+    padding: var(--spacing-xs);
+    font-size: var(--font-size-sm);
+  }
+
+  .season-standings__col-tournaments,
+  .season-standings__col-best,
+  .season-standings__col-avg {
+    display: none;
+  }
+
+  .season-breaks__item {
+    flex-wrap: wrap;
+  }
+
+  .season-breaks__info {
+    width: 100%;
+    order: 3;
+    margin-top: var(--spacing-xs);
+  }
+}

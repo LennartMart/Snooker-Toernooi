@@ -1,0 +1,417 @@
+/**
+ * Masters Setup Page Styles
+ * Styles for Masters tournament qualification and setup
+ */
+
+/* ============ Page Layout ============ */
+
+.page--masters-setup {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+.page--masters-setup .page-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.page--masters-setup .page-header h1 {
+  margin: 0 0 var(--spacing-xs);
+  font-size: var(--font-size-3xl);
+}
+
+.page--masters-setup .page-header .lead {
+  margin: 0 0 var(--spacing-md);
+  color: var(--color-text-muted);
+}
+
+/* ============ Summary Cards ============ */
+
+.masters-setup-summary {
+  margin-bottom: var(--spacing-xl);
+}
+
+.summary-cards {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.summary-card {
+  flex: 1;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+
+.summary-value {
+  display: block;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.summary-label {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-xs);
+}
+
+/* ============ Content Layout ============ */
+
+.masters-setup-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-xl);
+}
+
+.masters-setup-players,
+.masters-setup-config {
+  min-width: 0;
+}
+
+/* ============ Qualifier List ============ */
+
+.masters-qualifier-list,
+.masters-reserve-list {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.masters-qualifier-list h3,
+.masters-reserve-list h3 {
+  margin: 0 0 var(--spacing-md);
+  font-size: var(--font-size-lg);
+}
+
+.qualifiers-table,
+.reserves-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.qualifiers-table th,
+.qualifiers-table td,
+.reserves-table th,
+.reserves-table td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.qualifiers-table th,
+.reserves-table th {
+  background: var(--color-gray-50);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.qualifiers-table tbody tr:last-child td,
+.reserves-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Row states */
+
+.qualifier-row {
+  transition: background-color 0.15s ease;
+}
+
+.qualifier-row:hover {
+  background: var(--color-gray-50);
+}
+
+.qualifier-row--withdrawn {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+.qualifier-row--withdrawn:hover {
+  opacity: 0.8;
+}
+
+/* Cell styles */
+
+.seed-cell {
+  width: 60px;
+  text-align: center;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.player-cell {
+  font-weight: var(--font-weight-medium);
+}
+
+.points-cell,
+.tournaments-cell {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.status-cell {
+  width: 100px;
+}
+
+.actions-cell {
+  width: 100px;
+  text-align: right;
+}
+
+/* Status badges */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.status-badge--qualified {
+  background: var(--color-success-light);
+  color: var(--color-success-dark);
+}
+
+.status-badge--reserve {
+  background: var(--color-info-light);
+  color: var(--color-info-dark);
+}
+
+.status-badge--withdrawn {
+  background: var(--color-error-light);
+  color: var(--color-error-dark);
+}
+
+/* ============ Pool Preview ============ */
+
+.masters-pool-preview {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.masters-pool-preview h3 {
+  margin: 0 0 var(--spacing-md);
+  font-size: var(--font-size-lg);
+}
+
+.pool-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+}
+
+.pool-preview-card {
+  background: var(--color-gray-50);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+}
+
+.pool-preview-card h4 {
+  margin: 0 0 var(--spacing-sm);
+  font-size: var(--font-size-md);
+  color: var(--color-primary);
+}
+
+.pool-player-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pool-player-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) 0;
+}
+
+.pool-player-item .player-seed {
+  min-width: 30px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.pool-player-item .player-name {
+  font-weight: var(--font-weight-medium);
+}
+
+/* ============ Withdrawal Log ============ */
+
+.withdrawal-log {
+  background: var(--color-warning-light);
+  border: 1px solid var(--color-warning);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.withdrawal-log h3 {
+  margin: 0 0 var(--spacing-md);
+  font-size: var(--font-size-lg);
+  color: var(--color-warning-dark);
+}
+
+.withdrawal-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.withdrawal-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.withdrawal-item:last-child {
+  border-bottom: none;
+}
+
+.withdrawal-player {
+  font-weight: var(--font-weight-medium);
+}
+
+.withdrawal-reason {
+  font-size: var(--font-size-sm);
+  color: var(--color-warning-dark);
+  font-style: italic;
+}
+
+/* ============ Tournament Form ============ */
+
+.masters-tournament-form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.masters-tournament-form h3 {
+  margin: 0 0 var(--spacing-md);
+  font-size: var(--font-size-lg);
+}
+
+.masters-tournament-form .form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.masters-tournament-form .form-group:last-child {
+  margin-bottom: 0;
+}
+
+.masters-tournament-form label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+}
+
+.masters-tournament-form .form-control {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-background);
+}
+
+.masters-tournament-form .form-control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+/* ============ Actions ============ */
+
+.masters-setup-actions {
+  text-align: center;
+}
+
+.masters-setup-actions .btn--lg {
+  padding: var(--spacing-md) var(--spacing-2xl);
+  font-size: var(--font-size-lg);
+}
+
+/* ============ Validation Errors ============ */
+
+.validation-errors {
+  margin-bottom: var(--spacing-lg);
+}
+
+.validation-errors h4 {
+  margin: 0 0 var(--spacing-sm);
+}
+
+.validation-errors ul {
+  margin: 0;
+  padding-left: var(--spacing-lg);
+}
+
+.validation-errors li {
+  margin-bottom: var(--spacing-xs);
+}
+
+/* ============ Responsive ============ */
+
+@media (max-width: 1024px) {
+  .masters-setup-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .masters-setup-config {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .page--masters-setup {
+    padding: var(--spacing-md);
+  }
+  
+  .summary-cards {
+    flex-direction: column;
+  }
+  
+  .summary-card {
+    flex: none;
+  }
+  
+  .pool-preview-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .qualifiers-table,
+  .reserves-table {
+    font-size: var(--font-size-sm);
+  }
+  
+  .qualifiers-table th,
+  .qualifiers-table td,
+  .reserves-table th,
+  .reserves-table td {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .tournaments-cell {
+    display: none;
+  }
+}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Snooker Tournament Management Platform - Track scores, rankings, and manage tournaments" />
+    <meta name="theme-color" content="#1a472a" />
+    <title>Snooker Tournament Platform</title>
+  </head>
+  <body>
+    <!-- Skip Links for Keyboard Navigation -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main-nav" class="skip-link">Skip to navigation</a>
+    
+    <!-- Live Region for Screen Reader Announcements -->
+    <div id="live-region" class="live-region" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div id="alert-region" class="live-region" role="alert" aria-live="assertive" aria-atomic="true"></div>
+    
+    <div id="app" role="application" aria-label="Snooker Tournament Platform">
+      <!-- App shell will be rendered here -->
+      <div class="loading-state" role="status" aria-live="polite">
+        <div class="loading-spinner" aria-hidden="true"></div>
+        <p>Loading application...</p>
+      </div>
+    </div>
+    
+    <script type="module" src="/src/js/main.js"></script>
+    
+    <!-- Keyboard Detection Script -->
+    <script>
+      // Detect keyboard vs mouse users for focus styling
+      document.body.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+          document.body.classList.add('keyboard-user');
+        }
+      });
+      document.body.addEventListener('mousedown', function() {
+        document.body.classList.remove('keyboard-user');
+      });
+    </script>
+  </body>
+</html>

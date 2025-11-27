@@ -1,0 +1,368 @@
+/**
+ * Players Page Styles
+ * Styles for the player management page
+ */
+
+/* ============ Page Layout ============ */
+
+.page--players {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+}
+
+/* ============ Header ============ */
+
+.players-page__header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.players-page__title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.players-page__title {
+  margin: 0;
+  font-size: var(--font-size-2xl);
+  color: var(--color-text-primary);
+}
+
+.players-page__controls {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.players-page__search {
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.players-page__search .form-input {
+  width: 100%;
+}
+
+.players-page__sort {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.players-page__sort .form-label--inline {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* ============ Add Form ============ */
+
+.players-page__add-form {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-primary-light, rgba(46, 125, 50, 0.1));
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.players-page__add-form .form-input {
+  flex: 1;
+  max-width: 400px;
+}
+
+.players-page__add-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+/* ============ Players Table ============ */
+
+.players-table {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.players-table__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-gray-50);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.players-table__count {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.players-table__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.players-table__table thead th {
+  background: var(--color-gray-100);
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.players-table__table tbody td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.players-table__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Column widths */
+
+.players-table__col-name {
+  min-width: 200px;
+}
+
+.players-table__col-date {
+  width: 150px;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.players-table__col-actions {
+  width: 120px;
+  text-align: right;
+}
+
+/* Row states */
+
+.players-table__row {
+  transition: background-color 0.15s ease;
+}
+
+.players-table__row:hover {
+  background: var(--color-gray-50);
+}
+
+.players-table__row:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+  background: var(--color-gray-50);
+}
+
+.players-table__row--editing {
+  background: var(--color-primary-light, rgba(46, 125, 50, 0.05));
+}
+
+.players-table__row--editing:hover {
+  background: var(--color-primary-light, rgba(46, 125, 50, 0.08));
+}
+
+/* Action buttons */
+
+.players-table__col-actions .btn {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  margin-left: var(--spacing-xs);
+}
+
+.players-table__col-actions .btn--danger:hover {
+  background: var(--color-error-light, rgba(211, 47, 47, 0.1));
+  color: var(--color-error);
+}
+
+/* Inline edit form */
+
+.players-table__row--editing .form-input--sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-base);
+}
+
+/* ============ Empty State ============ */
+
+.players-page__empty {
+  text-align: center;
+  padding: var(--spacing-3xl) var(--spacing-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.players-page__empty .empty-state__message {
+  margin: 0 0 var(--spacing-sm);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
+}
+
+.players-page__empty .empty-state__hint {
+  margin: 0 0 var(--spacing-lg);
+  color: var(--color-text-muted);
+}
+
+/* ============ Button States ============ */
+
+.btn--active {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn--active:hover {
+  background: var(--color-primary-dark);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.btn--ghost:hover {
+  background: var(--color-gray-100);
+  color: var(--color-text-primary);
+}
+
+/* ============ Responsive ============ */
+
+@media (max-width: 768px) {
+  .page--players {
+    padding: var(--spacing-md);
+  }
+
+  .players-page__title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+
+  .players-page__title {
+    font-size: var(--font-size-xl);
+  }
+
+  .players-page__controls {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .players-page__search {
+    max-width: 100%;
+  }
+
+  .players-page__sort {
+    justify-content: flex-start;
+  }
+
+  .players-page__add-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .players-page__add-form .form-input {
+    max-width: 100%;
+  }
+
+  .players-page__add-actions {
+    justify-content: flex-end;
+  }
+
+  /* Table responsive */
+  .players-table__col-date {
+    display: none;
+  }
+
+  .players-table__col-name {
+    min-width: auto;
+  }
+
+  .players-table__table thead th,
+  .players-table__table tbody td {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .players-page__title-row .btn {
+    width: 100%;
+  }
+
+  .players-table__col-actions {
+    width: auto;
+  }
+
+  .players-table__col-actions .btn {
+    padding: var(--spacing-xs);
+  }
+}
+
+/* ============ Print ============ */
+
+@media print {
+  .players-page__header .btn,
+  .players-page__add-form,
+  .players-table__col-actions,
+  .players-page__controls {
+    display: none;
+  }
+
+  .page--players {
+    padding: 0;
+  }
+
+  .players-table {
+    border: none;
+  }
+
+  .players-table__table {
+    border: 1px solid #000;
+  }
+
+  .players-table__table th,
+  .players-table__table td {
+    border: 1px solid #ccc;
+  }
+}
+
+/* ============ Accessibility ============ */
+
+.players-page__search .form-input:focus,
+.players-page__add-form .form-input:focus,
+.players-table__row--editing .form-input:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .players-table {
+    border-width: 2px;
+  }
+
+  .players-table__row:focus {
+    outline-width: 3px;
+  }
+
+  .btn--active {
+    border: 2px solid var(--color-primary-dark);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .players-table__row {
+    transition: none;
+  }
+}

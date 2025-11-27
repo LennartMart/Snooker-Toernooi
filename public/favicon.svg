@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Snooker ball background -->
+  <circle cx="50" cy="50" r="45" fill="#d11919"/>
+  <!-- Highlight -->
+  <ellipse cx="35" cy="35" rx="12" ry="8" fill="rgba(255,255,255,0.3)" transform="rotate(-30 35 35)"/>
+  <!-- Number 3 (red ball) circle -->
+  <circle cx="50" cy="50" r="15" fill="white"/>
+  <!-- Number -->
+  <text x="50" y="57" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#d11919" text-anchor="middle">3</text>
+</svg>

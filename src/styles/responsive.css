@@ -1,0 +1,733 @@
+/**
+ * Responsive Styles - Snooker Tournament Platform
+ * Comprehensive responsive design for 320px - 2560px viewports
+ * WCAG 2.1 AA compliant with touch-friendly targets
+ */
+
+/* ============ CSS Custom Properties for Responsive Layout ============ */
+:root {
+  /* Mobile first spacing */
+  --space-responsive-xs: var(--space-xs);
+  --space-responsive-sm: var(--space-sm);
+  --space-responsive-md: var(--space-md);
+  --space-responsive-lg: var(--space-lg);
+  
+  /* Touch target minimum (WCAG 2.5.5) */
+  --touch-target-min: 44px;
+  
+  /* Container widths */
+  --container-xs: 100%;
+  --container-sm: 540px;
+  --container-md: 720px;
+  --container-lg: 960px;
+  --container-xl: 1140px;
+  --container-2xl: 1320px;
+}
+
+/* ============ Extra Small Devices (320px - 479px) ============ */
+@media (max-width: 479px) {
+  :root {
+    --space-responsive-xs: 0.125rem;
+    --space-responsive-sm: 0.25rem;
+    --space-responsive-md: 0.5rem;
+    --space-responsive-lg: 1rem;
+  }
+  
+  html {
+    font-size: 14px;
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Typography scaling */
+  h1 { font-size: var(--font-size-xl); }
+  h2 { font-size: var(--font-size-lg); }
+  h3 { font-size: var(--font-size-md); }
+  h4 { font-size: var(--font-size-sm); }
+  
+  /* Container */
+  .container {
+    padding: 0 var(--space-sm);
+    width: 100%;
+  }
+  
+  /* Page layout */
+  .page {
+    padding: var(--space-md) 0;
+  }
+  
+  /* Cards stack full width */
+  .card {
+    margin-left: calc(-1 * var(--space-sm));
+    margin-right: calc(-1 * var(--space-sm));
+    border-radius: 0;
+    padding: var(--space-md);
+  }
+  
+  /* Forms - full width inputs */
+  .form-group {
+    margin-bottom: var(--space-md);
+  }
+  
+  input,
+  select,
+  textarea {
+    padding: var(--space-md);
+    min-height: var(--touch-target-min);
+  }
+  
+  /* Buttons - full width and touch-friendly */
+  button,
+  .btn {
+    width: 100%;
+    min-height: var(--touch-target-min);
+    padding: var(--space-md);
+    font-size: var(--font-size-md);
+  }
+  
+  .btn-group {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  /* Navigation */
+  .main-nav {
+    padding: var(--space-sm);
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .nav-brand {
+    font-size: var(--font-size-lg);
+  }
+  
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: var(--space-xs);
+  }
+  
+  .nav-links a {
+    display: block;
+    text-align: center;
+    padding: var(--space-sm);
+    min-height: var(--touch-target-min);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Tables - card view */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+  
+  thead {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  tr {
+    margin-bottom: var(--space-md);
+    border: 1px solid var(--color-text-muted);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm);
+    background: var(--color-surface);
+  }
+  
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-xs) var(--space-sm);
+    border: none;
+    text-align: right;
+  }
+  
+  td::before {
+    content: attr(data-label);
+    font-weight: var(--font-weight-semibold);
+    text-align: left;
+    color: var(--color-text-secondary);
+  }
+  
+  /* Home page */
+  .page--home {
+    padding: var(--space-lg) var(--space-sm);
+  }
+  
+  .home-actions {
+    flex-direction: column;
+  }
+  
+  /* Tournament form */
+  .step-list {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  
+  .player-list {
+    max-height: 250px;
+  }
+  
+  /* Match entry */
+  .score-display {
+    font-size: var(--font-size-xl);
+  }
+  
+  /* Pool standings */
+  .pool-standings-table {
+    font-size: var(--font-size-sm);
+  }
+  
+  /* Bracket view - vertical scroll */
+  .bracket-view {
+    padding: var(--space-sm);
+  }
+  
+  .bracket-round {
+    min-width: 100%;
+  }
+}
+
+/* ============ Small Devices (480px - 767px) ============ */
+@media (min-width: 480px) and (max-width: 767px) {
+  html {
+    font-size: 15px;
+  }
+  
+  .container {
+    max-width: var(--container-sm);
+  }
+  
+  /* Two column layout for buttons */
+  .btn-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+  }
+  
+  /* Cards - slight margin */
+  .card {
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: var(--radius-md);
+  }
+  
+  /* Tables - still card view but wider */
+  tr {
+    padding: var(--space-md);
+  }
+  
+  /* Navigation - horizontal but compact */
+  .nav-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* ============ Medium Devices (768px - 1023px) ============ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    max-width: var(--container-md);
+  }
+  
+  /* Two column layouts */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+  
+  /* Navigation - full horizontal */
+  .main-nav {
+    flex-direction: row;
+  }
+  
+  .nav-links {
+    flex-direction: row;
+  }
+  
+  /* Tables - standard view */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: revert;
+  }
+  
+  thead {
+    position: static;
+  }
+  
+  tr {
+    margin-bottom: 0;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+  }
+  
+  td {
+    display: table-cell;
+    text-align: left;
+  }
+  
+  td::before {
+    content: none;
+  }
+  
+  /* Form sections side by side */
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+  
+  /* Bracket view - horizontal scroll enabled */
+  .bracket-view__container {
+    flex-direction: row;
+  }
+}
+
+/* ============ Large Devices (1024px - 1279px) ============ */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .container {
+    max-width: var(--container-lg);
+  }
+  
+  /* Three column layouts */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+  
+  /* Sidebar layouts */
+  .layout-sidebar {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+/* ============ Extra Large Devices (1280px - 1535px) ============ */
+@media (min-width: 1280px) and (max-width: 1535px) {
+  .container {
+    max-width: var(--container-xl);
+  }
+  
+  /* Four column layouts */
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+  }
+  
+  /* Wider sidebar */
+  .layout-sidebar {
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+/* ============ 2XL Devices (1536px - 2559px) ============ */
+@media (min-width: 1536px) and (max-width: 2559px) {
+  .container {
+    max-width: var(--container-2xl);
+  }
+  
+  /* Increase font sizes for readability */
+  html {
+    font-size: 17px;
+  }
+  
+  /* Increase spacing */
+  :root {
+    --space-responsive-lg: 2rem;
+    --space-responsive-xl: 3rem;
+  }
+}
+
+/* ============ Ultra Wide (2560px+) ============ */
+@media (min-width: 2560px) {
+  html {
+    font-size: 18px;
+  }
+  
+  .container {
+    max-width: 1600px;
+  }
+  
+  /* Center content with max width */
+  .app-main {
+    max-width: 1800px;
+    margin: 0 auto;
+  }
+  
+  /* Larger cards */
+  .card {
+    padding: var(--space-xl);
+  }
+}
+
+/* ============ Touch Device Enhancements ============ */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets */
+  button,
+  .btn,
+  a,
+  input,
+  select,
+  textarea,
+  .player-item,
+  .nav-links a {
+    min-height: var(--touch-target-min);
+  }
+  
+  /* Disable hover states on touch */
+  .btn:hover,
+  .player-item:hover,
+  tr:hover {
+    background-color: inherit;
+  }
+  
+  /* Active states for touch feedback */
+  .btn:active {
+    transform: scale(0.98);
+  }
+  
+  .player-item:active {
+    background-color: var(--color-surface-hover);
+  }
+}
+
+/* ============ Print Styles ============ */
+@media print {
+  /* Hide navigation and interactive elements */
+  .app-header,
+  .app-footer,
+  .main-nav,
+  button,
+  .btn,
+  .nav-links {
+    display: none !important;
+  }
+  
+  /* Reset colors for print */
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  /* Page breaks */
+  .page-break {
+    page-break-after: always;
+  }
+  
+  .no-page-break {
+    page-break-inside: avoid;
+  }
+  
+  /* Show full tables */
+  table {
+    width: 100%;
+  }
+  
+  tr {
+    page-break-inside: avoid;
+  }
+}
+
+/* ============ Landscape Orientation ============ */
+@media (orientation: landscape) and (max-height: 500px) {
+  /* Reduce vertical spacing in landscape on mobile */
+  .page {
+    padding: var(--space-sm) 0;
+  }
+  
+  h1 {
+    margin-bottom: var(--space-sm);
+  }
+  
+  .main-nav {
+    padding: var(--space-xs) var(--space-md);
+  }
+  
+  /* Make nav horizontal when in landscape */
+  .nav-links {
+    flex-direction: row;
+  }
+}
+
+/* ============ Reduced Motion ============ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============ High Contrast Mode ============ */
+@media (prefers-contrast: high) {
+  :root {
+    --color-border: #000000;
+    --color-text-muted: #595959;
+  }
+  
+  button,
+  .btn {
+    border: 2px solid currentColor;
+  }
+  
+  input,
+  select,
+  textarea {
+    border-width: 2px;
+  }
+  
+  .card {
+    border: 2px solid var(--color-border);
+  }
+}
+
+/* ============ Component-Specific Responsive Enhancements ============ */
+
+/* Home Page */
+@media (min-width: 768px) {
+  .home-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Season Cards */
+.season-card-grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .season-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .season-card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tournament Cards */
+.tournament-card-grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .tournament-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .tournament-card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  gap: var(--space-sm);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 640px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Quick Actions */
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+@media (max-width: 479px) {
+  .quick-actions {
+    flex-direction: column;
+  }
+  
+  .quick-actions .btn {
+    width: 100%;
+  }
+}
+
+/* Data Management */
+.data-management-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .data-management-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Rankings Tables */
+@media (max-width: 767px) {
+  .rankings-table th:nth-child(n+4),
+  .rankings-table td:nth-child(n+4) {
+    display: none;
+  }
+  
+  .rankings-table--expanded th:nth-child(n+4),
+  .rankings-table--expanded td:nth-child(n+4) {
+    display: table-cell;
+  }
+}
+
+/* Bracket Mobile Scroll */
+@media (max-width: 767px) {
+  .bracket-scroll-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: var(--space-md);
+  }
+  
+  .bracket-scroll-container::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .bracket-scroll-container::-webkit-scrollbar-track {
+    background: var(--color-surface);
+    border-radius: var(--radius-full);
+  }
+  
+  .bracket-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--color-text-muted);
+    border-radius: var(--radius-full);
+  }
+}
+
+/* Modal Responsive */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 479px) {
+  .modal {
+    padding: 0;
+    align-items: flex-end;
+  }
+  
+  .modal-content {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+}
+
+/* Form Responsive Grid */
+.form-grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .form-grid--2col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .form-grid--3col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Action Bar */
+.action-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  padding: var(--space-md) 0;
+}
+
+@media (max-width: 479px) {
+  .action-bar {
+    flex-direction: column;
+  }
+  
+  .action-bar .btn {
+    width: 100%;
+  }
+}
+
+/* Score Entry */
+@media (max-width: 479px) {
+  .score-entry-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .score-button-row {
+    flex-wrap: wrap;
+  }
+  
+  .score-button {
+    min-width: calc(25% - var(--space-sm));
+    flex: 1;
+  }
+}

@@ -1,0 +1,432 @@
+/**
+ * Bracket Visualization Styles
+ * Styles for knockout brackets and tournament progression
+ */
+
+/* Bracket View Container */
+.bracket-view {
+  overflow-x: auto;
+  padding: var(--spacing-lg);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+}
+
+.bracket-view__title {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
+  font-size: 1.25rem;
+}
+
+.bracket-view__container {
+  display: flex;
+  gap: var(--spacing-md);
+  min-width: fit-content;
+}
+
+.bracket-view--empty {
+  padding: var(--spacing-xl);
+  text-align: center;
+}
+
+/* Bracket Round */
+.bracket-round {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+.bracket-round__header {
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  background: var(--color-primary);
+  color: var(--color-bg);
+  font-weight: 600;
+  text-align: center;
+  border-radius: var(--radius-sm);
+}
+
+.bracket-round__matches {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex: 1;
+  gap: var(--spacing-lg);
+}
+
+.bracket-round__match-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+/* Bracket Match */
+.bracket-match {
+  width: 100%;
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bracket-match--clickable {
+  cursor: pointer;
+}
+
+.bracket-match--clickable:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.bracket-match--ready {
+  border-color: var(--color-success);
+}
+
+.bracket-match--in-progress {
+  border-color: var(--color-warning);
+  animation: pulse-border 2s infinite;
+}
+
+.bracket-match--completed {
+  border-color: var(--color-text-muted);
+  background: var(--color-surface);
+}
+
+.bracket-match--pending {
+  border-color: var(--color-border);
+  opacity: 0.7;
+}
+
+.bracket-match--empty {
+  opacity: 0.4;
+}
+
+@keyframes pulse-border {
+  0%, 100% {
+    border-color: var(--color-warning);
+  }
+  50% {
+    border-color: var(--color-warning-hover);
+  }
+}
+
+/* Bracket Match Player */
+.bracket-match__player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.bracket-match__player:last-child {
+  border-bottom: none;
+}
+
+.bracket-match__player--winner {
+  background: var(--color-success-bg);
+  font-weight: 600;
+}
+
+.bracket-match__player--loser {
+  opacity: 0.6;
+}
+
+.bracket-match__player--tbd {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.bracket-match__name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bracket-match__score {
+  font-weight: 600;
+  margin-left: var(--spacing-sm);
+  min-width: 1.5em;
+  text-align: center;
+}
+
+.bracket-match__info {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+/* Bracket Match Compact */
+.bracket-match--compact {
+  padding: var(--spacing-sm);
+}
+
+.bracket-match__vs {
+  font-size: 0.875rem;
+}
+
+/* Bracket Connectors */
+.bracket-connectors {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 40px;
+  flex: 0 0 40px;
+}
+
+.bracket-connector {
+  position: relative;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bracket-connector__line {
+  position: absolute;
+  background: var(--color-border);
+}
+
+.bracket-connector__line--top {
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 2px;
+}
+
+.bracket-connector__line--bottom {
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 2px;
+}
+
+.bracket-connector__line--middle {
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+}
+
+/* Dual Brackets */
+.dual-brackets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.dual-brackets__section {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+}
+
+.dual-brackets__section--winner {
+  border-color: var(--color-success);
+}
+
+.dual-brackets__section--consolation {
+  border-color: var(--color-text-muted);
+}
+
+.dual-brackets__heading {
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid currentColor;
+}
+
+.dual-brackets__section--winner .dual-brackets__heading {
+  color: var(--color-success);
+}
+
+.dual-brackets__section--consolation .dual-brackets__heading {
+  color: var(--color-text-muted);
+}
+
+/* Bracket Legend */
+.bracket-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.bracket-legend__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.875rem;
+}
+
+.bracket-legend__color {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-xs);
+  border: 2px solid;
+}
+
+.bracket-legend__color--ready {
+  border-color: var(--color-success);
+  background: var(--color-success-bg);
+}
+
+.bracket-legend__color--in-progress {
+  border-color: var(--color-warning);
+  background: var(--color-warning-bg);
+}
+
+.bracket-legend__color--completed {
+  border-color: var(--color-text-muted);
+  background: var(--color-surface);
+}
+
+.bracket-legend__color--pending {
+  border-color: var(--color-border);
+  background: var(--color-bg);
+}
+
+/* Bracket Progress */
+.bracket-progress {
+  margin-bottom: var(--spacing-md);
+}
+
+.bracket-progress__bar {
+  height: 8px;
+  background: var(--color-surface);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--spacing-xs);
+}
+
+.bracket-progress__fill {
+  height: 100%;
+  background: var(--color-success);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+.bracket-progress__text {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* Knockout Page */
+.page--knockout {
+  padding: var(--spacing-lg);
+}
+
+.knockout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.knockout-header__actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.knockout-progress {
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+}
+
+.knockout-progress h4 {
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.knockout-instructions {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+/* Knockout Champions */
+.knockout-champions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg) 100%);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-success);
+}
+
+.knockout-champion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  min-width: 200px;
+  text-align: center;
+}
+
+.knockout-champion--winner {
+  border: 2px solid gold;
+}
+
+.knockout-champion--consolation {
+  border: 2px solid silver;
+}
+
+.knockout-champion__icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.knockout-champion__label {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-xs);
+}
+
+.knockout-champion__name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bracket-view__container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .bracket-round {
+    min-width: 100%;
+  }
+  
+  .bracket-connectors {
+    display: none;
+  }
+  
+  .knockout-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .knockout-champions {
+    flex-direction: column;
+  }
+  
+  .knockout-champion {
+    width: 100%;
+  }
+}
