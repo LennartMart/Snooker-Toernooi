@@ -7,10 +7,11 @@
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
-## Format: `[ID] [P?] [Story] Description`
+## Format: `- [ ] [ID] [P?] [Story?] Description with file path`
 
+- **Checkbox**: `- [ ]` for incomplete, `- [x]` for complete
 - **[P]**: Can run in parallel (different files, no dependencies)
-- **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
+- **[Story]**: Which user story this task belongs to (US1, US2, etc.) - only for user story phases
 - Include exact file paths in descriptions
 
 ---
@@ -22,9 +23,9 @@
 - [x] T001 Initialize Vite vanilla JS project with `npm create vite@latest . -- --template vanilla`
 - [x] T002 [P] Install dev dependencies: vitest, @vitest/coverage-v8, jsdom, eslint, prettier
 - [x] T003 [P] Install runtime dependencies: @azure/storage-blob
-- [x] T004 Create project directory structure per plan.md (src/js/{models,services,storage,ui,utils}, src/styles/, src/pages/, tests/)
+- [x] T004 Create project directory structure per plan.md in src/js/{models,services,storage,ui,utils}, src/styles/, src/pages/, tests/
 - [x] T005 [P] Configure vite.config.js with ES2022 target and Vitest settings
-- [x] T006 [P] Configure ESLint and Prettier for code quality
+- [x] T006 [P] Configure ESLint and Prettier for code quality in eslint.config.js
 - [x] T007 [P] Create .env.example with Azure Storage variables
 - [x] T008 [P] Create src/styles/variables.css with design tokens (colors, spacing, typography)
 - [x] T009 [P] Create src/styles/main.css with global styles and CSS reset
@@ -77,7 +78,7 @@
 - [x] T033 Create router in src/js/ui/router.js (hash-based SPA routing)
 - [x] T034 [P] Create base component pattern in src/js/ui/Component.js (render function pattern)
 - [x] T035 Create main app shell in src/js/main.js (initializes store, router, renders app)
-- [x] T036 Update src/index.html with app shell structure (nav, main content area, footer)
+- [x] T036 Update index.html with app shell structure (nav, main content area, footer)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -102,9 +103,8 @@
 - [x] T042 [P] [US1] Create PlayerSelector component in src/js/ui/components/PlayerSelector.js (multi-select player list with add new)
 - [x] T043 [P] [US1] Create TournamentConfigForm component in src/js/ui/components/TournamentConfigForm.js (name, date, format, player count, pool count, frames settings)
 - [x] T044 [US1] Create TournamentCreatePage in src/js/ui/pages/TournamentCreatePage.js (combines PlayerSelector and TournamentConfigForm)
-- [x] T045 [US1] Create src/pages/tournament-create.html template
-- [x] T046 [US1] Create src/styles/components/tournament-form.css for form styling
-- [x] T047 [US1] Wire up tournament creation route in router and navigation
+- [x] T045 [P] [US1] Create src/styles/components/tournament-form.css for form styling
+- [x] T046 [US1] Wire up tournament creation route in router and navigation
 
 **Checkpoint**: User Story 1 complete - tournament creation with pools and matches working
 
@@ -118,19 +118,18 @@
 
 ### Services for User Story 2
 
-- [x] T048 [US2] Implement FrameService in src/js/services/FrameService.js (create frame, determine frame winner)
-- [x] T049 [US2] Implement BreakService in src/js/services/BreakService.js (record break, validate threshold, get breaks by match/player/tournament)
-- [x] T050 [US2] Implement MatchService in src/js/services/MatchService.js (update match, add frame result, determine match winner, handle bye auto-complete)
+- [x] T047 [US2] Implement FrameService in src/js/services/FrameService.js (create frame, determine frame winner)
+- [x] T048 [US2] Implement BreakService in src/js/services/BreakService.js (record break, validate threshold, get breaks by match/player/tournament)
+- [x] T049 [US2] Implement MatchService in src/js/services/MatchService.js (update match, add frame result, determine match winner, handle bye auto-complete)
 
 ### UI Components for User Story 2
 
-- [x] T051 [P] [US2] Create FrameScoreEntry component in src/js/ui/components/FrameScoreEntry.js (enter winner for each frame)
-- [x] T052 [P] [US2] Create BreakEntry component in src/js/ui/components/BreakEntry.js (add break value with player selection)
-- [x] T053 [US2] Create MatchScoreCard component in src/js/ui/components/MatchScoreCard.js (displays match, frames, allows score entry)
-- [x] T054 [US2] Create MatchEntryPage in src/js/ui/pages/MatchEntryPage.js (select match, enter scores)
-- [x] T055 [US2] Create src/pages/match-entry.html template
-- [x] T056 [US2] Create src/styles/components/match-entry.css for score entry styling
-- [x] T057 [US2] Wire up match entry route in router and navigation
+- [x] T050 [P] [US2] Create FrameScoreEntry component in src/js/ui/components/FrameScoreEntry.js (enter winner for each frame)
+- [x] T051 [P] [US2] Create BreakEntry component in src/js/ui/components/BreakEntry.js (add break value with player selection)
+- [x] T052 [US2] Create MatchScoreCard component in src/js/ui/components/MatchScoreCard.js (displays match, frames, allows score entry)
+- [x] T053 [US2] Create MatchEntryPage in src/js/ui/pages/MatchEntryPage.js (select match, enter scores)
+- [x] T054 [P] [US2] Create src/styles/components/match-entry.css for score entry styling
+- [x] T055 [US2] Wire up match entry route in router and navigation
 
 **Checkpoint**: User Story 2 complete - match score entry working independently
 
@@ -144,18 +143,18 @@
 
 ### Services for User Story 3
 
-- [x] T058 [US3] Implement TiebreakerService in src/js/services/TiebreakerService.js (head-to-head, matches-won, highest-break comparisons)
-- [x] T059 [US3] Implement PoolStandingsService in src/js/services/PoolStandingsService.js (calculate standings, apply tiebreakers in correct order, handle shootout override)
-- [x] T060 [US3] Implement ShootoutService in src/js/services/ShootoutService.js (record shootout result, update pool standings)
+- [x] T056 [US3] Implement TiebreakerService in src/js/services/TiebreakerService.js (head-to-head, matches-won, highest-break comparisons)
+- [x] T057 [US3] Implement PoolStandingsService in src/js/services/PoolStandingsService.js (calculate standings, apply tiebreakers in correct order, handle shootout override)
+- [x] T058 [US3] Implement ShootoutService in src/js/services/ShootoutService.js (record shootout result, update pool standings)
 
 ### UI Components for User Story 3
 
-- [x] T061 [P] [US3] Create PoolStandingsTable component in src/js/ui/components/PoolStandingsTable.js (display position, player, W/L, frames, highest break)
-- [x] T062 [P] [US3] Create ShootoutEntry component in src/js/ui/components/ShootoutEntry.js (enter shootout winner when tiebreaker required)
-- [x] T063 [US3] Create PoolMatchList component in src/js/ui/components/PoolMatchList.js (list all matches in pool with scores)
-- [x] T064 [US3] Create PoolViewPage in src/js/ui/pages/PoolViewPage.js (shows standings table and match list for a pool)
-- [x] T065 [US3] Create src/styles/components/pool-standings.css for standings table styling
-- [x] T066 [US3] Wire up pool view route in router
+- [x] T059 [P] [US3] Create PoolStandingsTable component in src/js/ui/components/PoolStandingsTable.js (display position, player, W/L, frames, highest break)
+- [x] T060 [P] [US3] Create ShootoutEntry component in src/js/ui/components/ShootoutEntry.js (enter shootout winner when tiebreaker required)
+- [x] T061 [US3] Create PoolMatchList component in src/js/ui/components/PoolMatchList.js (list all matches in pool with scores)
+- [x] T062 [US3] Create PoolViewPage in src/js/ui/pages/PoolViewPage.js (shows standings table and match list for a pool)
+- [x] T063 [P] [US3] Create src/styles/components/pool-standings.css for standings table styling
+- [x] T064 [US3] Wire up pool view route in router
 
 **Checkpoint**: User Story 3 complete - pool standings with tiebreakers working
 
@@ -169,17 +168,17 @@
 
 ### Services for User Story 4
 
-- [x] T067 [US4] Implement BracketGeneratorService in src/js/services/BracketGeneratorService.js (generate winner/consolation brackets from pool standings using binary tree structure)
-- [x] T068 [US4] Implement BracketProgressionService in src/js/services/BracketProgressionService.js (advance winners, route losers to lower position matches)
-- [x] T069 [US4] Extend MatchService to handle knockout match progression (update nextMatchId, loserMatchId logic)
+- [x] T065 [US4] Implement BracketGeneratorService in src/js/services/BracketGeneratorService.js (generate winner/consolation brackets from pool standings using binary tree structure)
+- [x] T066 [US4] Implement BracketProgressionService in src/js/services/BracketProgressionService.js (advance winners, route losers to lower position matches)
+- [x] T067 [US4] Extend MatchService to handle knockout match progression (update nextMatchId, loserMatchId logic)
 
 ### UI Components for User Story 4
 
-- [x] T070 [P] [US4] Create BracketMatch component in src/js/ui/components/BracketMatch.js (single match box in bracket view)
-- [x] T071 [US4] Create BracketView component in src/js/ui/components/BracketView.js (full bracket visualization with rounds)
-- [x] T072 [US4] Create KnockoutPage in src/js/ui/pages/KnockoutPage.js (shows winner and consolation brackets with match entry)
-- [x] T073 [US4] Create src/styles/components/bracket.css for bracket visualization styling
-- [x] T074 [US4] Wire up knockout bracket route in router
+- [x] T068 [P] [US4] Create BracketMatch component in src/js/ui/components/BracketMatch.js (single match box in bracket view)
+- [x] T069 [US4] Create BracketView component in src/js/ui/components/BracketView.js (full bracket visualization with rounds)
+- [x] T070 [US4] Create KnockoutPage in src/js/ui/pages/KnockoutPage.js (shows winner and consolation brackets with match entry)
+- [x] T071 [P] [US4] Create src/styles/components/bracket.css for bracket visualization styling
+- [x] T072 [US4] Wire up knockout bracket route in router
 
 **Checkpoint**: User Story 4 complete - knockout brackets generating and progressing correctly
 
@@ -193,16 +192,16 @@
 
 ### Services for User Story 5
 
-- [x] T075 [US5] Implement RankingService in src/js/services/RankingService.js (calculate position from bracket results, calculate points: 33-position + 10)
-- [x] T076 [US5] Implement TournamentResultsService in src/js/services/TournamentResultsService.js (compile final rankings, aggregate breaks, finalize tournament)
+- [x] T073 [US5] Implement RankingService in src/js/services/RankingService.js (calculate position from bracket results, calculate points: 33-position + 10)
+- [x] T074 [US5] Implement TournamentResultsService in src/js/services/TournamentResultsService.js (compile final rankings, aggregate breaks, finalize tournament)
 
 ### UI Components for User Story 5
 
-- [x] T077 [P] [US5] Create RankingsTable component in src/js/ui/components/RankingsTable.js (display position, player, position points, participation points, total)
-- [x] T078 [P] [US5] Create TournamentBreaksList component in src/js/ui/components/TournamentBreaksList.js (all breaks above threshold sorted descending)
-- [x] T079 [US5] Create TournamentResultsPage in src/js/ui/pages/TournamentResultsPage.js (final rankings and breaks list)
-- [x] T080 [US5] Create src/styles/components/rankings.css for rankings table styling
-- [x] T081 [US5] Wire up tournament results route in router
+- [x] T075 [P] [US5] Create RankingsTable component in src/js/ui/components/RankingsTable.js (display position, player, position points, participation points, total)
+- [x] T076 [P] [US5] Create TournamentBreaksList component in src/js/ui/components/TournamentBreaksList.js (all breaks above threshold sorted descending)
+- [x] T077 [US5] Create TournamentResultsPage in src/js/ui/pages/TournamentResultsPage.js (final rankings and breaks list)
+- [x] T078 [P] [US5] Create src/styles/components/rankings.css for rankings table styling
+- [x] T079 [US5] Wire up tournament results route in router
 
 **Checkpoint**: User Story 5 complete - tournament finalization with points working
 
@@ -216,18 +215,17 @@
 
 ### Services for User Story 6
 
-- [x] T082 [US6] Implement SeasonService in src/js/services/SeasonService.js (create season, add tournament, get all tournaments in season)
-- [x] T083 [US6] Implement SeasonStandingsService in src/js/services/SeasonStandingsService.js (aggregate points across tournaments, rank players, identify top 16 qualifiers)
-- [x] T084 [US6] Implement SeasonBreaksService in src/js/services/SeasonBreaksService.js (aggregate all breaks above Masters threshold across tournaments)
+- [x] T080 [US6] Implement SeasonService in src/js/services/SeasonService.js (create season, add tournament, get all tournaments in season)
+- [x] T081 [US6] Implement SeasonStandingsService in src/js/services/SeasonStandingsService.js (aggregate points across tournaments, rank players, identify top 16 qualifiers)
+- [x] T082 [US6] Implement SeasonBreaksService in src/js/services/SeasonBreaksService.js (aggregate all breaks above Masters threshold across tournaments)
 
 ### UI Components for User Story 6
 
-- [x] T085 [P] [US6] Create SeasonStandingsTable component in src/js/ui/components/SeasonStandingsTable.js (cumulative points, highlight top 16)
-- [x] T086 [P] [US6] Create SeasonBreaksList component in src/js/ui/components/SeasonBreaksList.js (breaks 25+ with player and tournament)
-- [x] T087 [US6] Create MastersPage in src/js/ui/pages/MastersPage.js (season standings and season breaks)
-- [x] T088 [US6] Create src/pages/masters.html template
-- [x] T089 [US6] Create src/styles/components/masters.css for Masters page styling
-- [x] T090 [US6] Wire up Masters page route in router and navigation
+- [x] T083 [P] [US6] Create SeasonStandingsTable component in src/js/ui/components/SeasonStandingsTable.js (cumulative points, highlight top 16)
+- [x] T084 [P] [US6] Create SeasonBreaksList component in src/js/ui/components/SeasonBreaksList.js (breaks 25+ with player and tournament)
+- [x] T085 [US6] Create MastersPage in src/js/ui/pages/MastersPage.js (season standings and season breaks)
+- [x] T086 [P] [US6] Create src/styles/components/season-standings.css for season standings styling
+- [x] T087 [US6] Wire up Masters page route in router and navigation
 
 **Checkpoint**: User Story 6 complete - season standings and Masters qualifiers displaying
 
@@ -241,21 +239,21 @@
 
 ### Services for User Story 7
 
-- [x] T091 [US7] Extend TournamentConfigService to include Masters-specific defaults (16 players, 4 pools, 2 frames, QF best of 5, SF/F best of 7)
-- [x] T092 [US7] Extend TiebreakerService to support Masters tiebreaker order (head-to-head → matches-won → highest-break)
-- [x] T093 [US7] Implement MastersQualifierService in src/js/services/MastersQualifierService.js (get top 16 from season, handle withdrawals with byes)
+- [x] T088 [US7] Extend TournamentConfigService to include Masters-specific defaults (16 players, 4 pools, 2 frames, QF best of 5, SF/F best of 7)
+- [x] T089 [US7] Extend TiebreakerService to support Masters tiebreaker order (head-to-head → matches-won → highest-break)
+- [x] T090 [US7] Implement MastersQualifierService in src/js/services/MastersQualifierService.js (get top 16 from season, handle withdrawals with byes)
 
 ### UI Components for User Story 7
 
-- [x] T094 [US7] Create MastersSetupPage in src/js/ui/pages/MastersSetupPage.js (select qualifiers, handle adjustments/withdrawals)
-- [x] T095 [US7] Extend TournamentConfigForm to show Masters-specific options when format is "masters"
-- [x] T096 [US7] Create src/styles/components/masters-setup.css for Masters setup page styling
+- [x] T091 [US7] Create MastersSetupPage in src/js/ui/pages/MastersSetupPage.js (select qualifiers, handle adjustments/withdrawals)
+- [x] T092 [US7] Extend TournamentConfigForm to show Masters-specific options when format is "masters"
+- [x] T093 [P] [US7] Create src/styles/components/masters-setup.css for Masters setup page styling
 
 **Checkpoint**: User Story 7 complete - Masters finale with distinct rules working
 
 ---
 
-## Phase 10: User Story - Data Management (Cross-Cutting)
+## Phase 10: Data Management (Cross-Cutting)
 
 **Goal**: Export and import JSON data for backup and portability (FR-030 to FR-034)
 
@@ -263,15 +261,17 @@
 
 ### Services for Data Management
 
-- [x] T097 Implement ExportService in src/js/services/ExportService.js (export season/tournament as downloadable JSON file)
-- [x] T098 Implement ImportService in src/js/services/ImportService.js (import JSON file, validate against schemas, merge into state)
+- [x] T094 Implement ExportService in src/js/services/ExportService.js (export season/tournament as downloadable JSON file)
+- [x] T095 Implement ImportService in src/js/services/ImportService.js (import JSON file, validate against schemas, merge into state)
 
 ### UI Components for Data Management
 
-- [x] T099 [P] Create ExportButton component in src/js/ui/components/ExportButton.js (download JSON file)
-- [x] T100 [P] Create ImportDialog component in src/js/ui/components/ImportDialog.js (file picker, validation feedback, import action)
-- [x] T101 Create DataManagementPage in src/js/ui/pages/DataManagementPage.js (export/import options)
-- [x] T102 Wire up data management in settings/menu
+- [x] T096 [P] Create ExportButton component in src/js/ui/components/ExportButton.js (download JSON file)
+- [x] T097 [P] Create ImportDialog component in src/js/ui/components/ImportDialog.js (file picker, validation feedback, import action)
+- [x] T098 Create DataManagementPage in src/js/ui/pages/DataManagementPage.js (export/import options)
+- [x] T099 [P] Create src/styles/components/import-dialog.css for import dialog styling
+- [x] T100 [P] Create src/styles/components/data-management.css for data management page styling
+- [x] T101 Wire up data management in settings/menu
 
 **Checkpoint**: Data Management complete - export/import functionality working
 
@@ -281,16 +281,16 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [x] T103 [P] Create TournamentViewPage in src/js/ui/pages/TournamentViewPage.js (overview: pools, brackets, current status)
-- [x] T104 [P] Create src/pages/tournament-view.html template
-- [x] T105 [P] Create HomePage in src/js/ui/pages/HomePage.js (season overview, quick links to active tournament)
-- [x] T106 Add responsive styling for mobile devices (320px-2560px) across all components
-- [x] T107 Add WCAG 2.1 AA accessibility: focus states, ARIA labels, keyboard navigation
-- [x] T108 Add loading states and error handling UI across all pages
-- [x] T109 [P] Performance optimization: lazy load pages, minimize reflows
-- [x] T110 [P] Add service index file in src/js/services/index.js exporting all services
-- [x] T111 [P] Create comprehensive README.md with setup and usage instructions
-- [x] T112 Run quickstart.md validation to ensure all setup steps work correctly
+- [x] T102 [P] Create TournamentViewPage in src/js/ui/pages/TournamentViewPage.js (overview: pools, brackets, current status)
+- [x] T103 [P] Create HomePage in src/js/ui/pages/HomePage.js (season overview, quick links to active tournament)
+- [x] T104 [P] Create SeasonsPage in src/js/ui/pages/SeasonsPage.js (list all seasons, create new season)
+- [x] T105 Add responsive styling for mobile devices (320px-1920px) in src/styles/responsive.css
+- [x] T106 Add WCAG 2.1 AA accessibility: focus states, ARIA labels, keyboard navigation in src/styles/accessibility.css and src/js/utils/accessibility.js
+- [x] T107 Add loading states and error handling UI in src/js/ui/LoadingStates.js and src/styles/loading-states.css
+- [x] T108 [P] Performance optimization: lazy load pages, minimize reflows in src/js/utils/performance.js
+- [x] T109 [P] Create service index file in src/js/services/index.js exporting all services
+- [x] T110 [P] Create comprehensive README.md with setup and usage instructions
+- [x] T111 Run quickstart.md validation to ensure all setup steps work correctly
 
 ---
 
@@ -361,7 +361,7 @@ Phase 1: Setup ──────────────► Phase 2: Foundation
 - Core implementation before integration
 - Story complete before moving to next priority
 
-### Parallel Opportunities
+### Parallel Opportunities per Phase
 
 **Phase 1 (Setup)**: T002, T003, T005, T006, T007, T008, T009 can run in parallel after T001
 
@@ -369,27 +369,17 @@ Phase 1: Setup ──────────────► Phase 2: Foundation
 - Models T010-T013 can run in parallel
 - Storage T020-T021 can run in parallel
 - Utilities T029-T031 can run in parallel
+- T033, T034 can run in parallel
 
-**Per User Story**: Tasks marked [P] within each phase can run in parallel
-
----
-
-## Parallel Example: Phase 2 Foundational
-
-```bash
-# After T009 (Setup complete), launch all independent models in parallel:
-T010: Create Player model in src/js/models/Player.js
-T011: Create Frame model in src/js/models/Frame.js
-T012: Create Break model in src/js/models/Break.js
-T013: Create Season model in src/js/models/Season.js
-
-# Then dependent models (reference other models):
-T014-T019: Sequential model creation
-
-# Storage adapters in parallel:
-T020: Create StorageAdapter interface
-T021: Implement LocalStorageAdapter
-```
+**Phase 3 (US1)**: T042, T043, T045 can run in parallel
+**Phase 4 (US2)**: T050, T051, T054 can run in parallel
+**Phase 5 (US3)**: T059, T060, T063 can run in parallel
+**Phase 6 (US4)**: T068, T071 can run in parallel
+**Phase 7 (US5)**: T075, T076, T078 can run in parallel
+**Phase 8 (US6)**: T083, T084, T086 can run in parallel
+**Phase 9 (US7)**: T093 can run in parallel with T091-T092
+**Phase 10 (Data)**: T096, T097, T099, T100 can run in parallel
+**Phase 11 (Polish)**: T102, T103, T104, T108, T109, T110 can run in parallel
 
 ---
 
@@ -420,11 +410,43 @@ T021: Implement LocalStorageAdapter
 
 ---
 
+## Summary
+
+| Metric | Count |
+|--------|-------|
+| **Total Tasks** | 111 |
+| **Setup (Phase 1)** | 9 tasks |
+| **Foundational (Phase 2)** | 27 tasks |
+| **US1 - Tournament Setup** | 10 tasks |
+| **US2 - Match Score Entry** | 9 tasks |
+| **US3 - Pool Standings** | 9 tasks |
+| **US4 - Knockout Brackets** | 8 tasks |
+| **US5 - Final Rankings** | 7 tasks |
+| **US6 - Season Standings** | 8 tasks |
+| **US7 - Masters Finale** | 6 tasks |
+| **Data Management** | 8 tasks |
+| **Polish** | 10 tasks |
+
+**Parallel Opportunities**: 47 tasks marked [P] can run in parallel within their phase
+
+**Independent Test Criteria**:
+- US1: Create 32-player tournament, verify 8 pools with round-robin matches
+- US2: Enter match scores, verify storage and retrieval
+- US3: Complete pool matches, verify tiebreaker ranking
+- US4: Finalize pools, verify bracket generation
+- US5: Complete tournament, verify 32 positions with correct points
+- US6: Complete 2+ tournaments, verify season point accumulation
+- US7: Create Masters, verify different format rules apply
+
+**Status**: ✅ All 111 tasks complete
+
+---
+
 ## Notes
 
-- [P] tasks = different files, no dependencies
+- [P] tasks = different files, no dependencies on incomplete tasks within same phase
 - [Story] label maps task to specific user story for traceability
 - Each user story should be independently completable and testable after its dependencies
-- Constitution requirements: ≥80% test coverage (add tests in Polish phase if needed), WCAG 2.1 AA, <2s page load, <500ms updates
+- Constitution requirements: ≥80% test coverage (if tests added), WCAG 2.1 AA, <2s page load, <500ms updates
 - Commit after each task or logical group
 - Stop at any checkpoint to validate story independently

@@ -187,6 +187,18 @@ As a tournament organizer, I want to run the Masters finale with its specific fo
 - **FR-033**: System MUST validate imported JSON data before applying
 - **FR-034**: System MUST use browser localStorage for data persistence (GitHub Pages compatible); export/import provides manual backup capability
 
+### Non-Functional Requirements
+
+**Responsiveness & Accessibility**
+- **NFR-001**: Application MUST be mobile-first responsive, supporting screen widths from 320px to 1920px
+- **NFR-002**: Application MUST be fully functional on mobile devices (phones, tablets) for score entry at venue
+- **NFR-003**: Touch targets MUST be at least 44x44px for mobile usability
+- **NFR-004**: Application SHOULD follow WCAG 2.1 AA guidelines for accessibility
+
+**Performance**
+- **NFR-005**: Initial page load MUST complete within 3 seconds on 3G connection
+- **NFR-006**: UI updates after user actions MUST complete within 500ms
+
 ### Key Entities
 
 - **Season**: A collection of tournaments (typically 10) culminating in a Masters finale; tracks cumulative player points
@@ -226,6 +238,7 @@ As a tournament organizer, I want to run the Masters finale with its specific fo
 ### Session 2025-11-27
 - Q: Data persistence strategy for GitHub Pages deployment? → A: localStorage with optional manual JSON export/import for backup
 - Q: GitHub Pages deployment method? → A: GitHub Actions workflow (auto-build and deploy on push)
+- Q: Device/screen size support? → A: Mobile-first responsive (320px-1920px)
 
 ## Measurable Outcomes
 
