@@ -6,11 +6,12 @@
 import { render, createElement, h, showLoading, showError, showEmpty } from '../Component.js';
 import { store, setLoading, setError } from '../../store/index.js';
 import { router } from '../router.js';
+import { getStorage } from '../../storage/index.js';
 import { getTournamentById } from '../../services/TournamentService.js';
-import { getMatchesByTournamentId, getIncompleteMatches } from '../../services/MatchGeneratorService.js';
-import { getBreaksByTournamentId, getBreaksAboveThreshold } from '../../services/BreakService.js';
+import { getPendingMatches } from '../../services/MatchService.js';
+import { getBreaksByTournament, getBreaksAboveThreshold } from '../../services/BreakService.js';
 import { calculatePoolStandings } from '../../services/PoolStandingsService.js';
-import { formatDateDisplay } from '../../utils/dateFormatter.js';
+import { formatDate } from '../../utils/dateFormatter.js';
 
 /**
  * @typedef {Object} TournamentViewPageProps
@@ -110,7 +111,7 @@ function renderHeader() {
     createElement(
       'div',
       { className: 'tournament-view__meta' },
-      h.span({ className: 'tournament-view__date' }, formatDateDisplay(tournament.date)),
+      h.span({ className: 'tournament-view__date' }, formatDate(tournament.date)),
       h.span({ className: 'tournament-view__format' }, tournament.format === 'masters' ? 'Masters' : 'Regular'),
       h.span({ className: 'tournament-view__players' }, `${tournament.playerIds?.length || 0} players`)
     ),
@@ -387,7 +388,7 @@ function renderBreaksSummary() {
  */
 function renderUpcomingMatches() {
   const { tournament, matches } = pageState;
-  const incomplete = getIncompleteMatches(matches);
+  const incomplete = getPendingMatches({ matches });
   
   if (incomplete.length === 0) {
     return null;
@@ -492,9 +493,11 @@ export async function renderTournamentViewPage({ container, tournamentId }) {
       return;
     }
     
-    // Load matches and breaks
-    const matches = await getMatchesByTournamentId(tournamentId);
-    const breaks = await getBreaksByTournamentId(tournamentId);
+    // Load matches from tournament and breaks from storage
+    const matches = tournament.matches || [];
+    const storage = getStorage();
+    const allBreaks = (await storage.getItem('breaks')) || [];
+    const breaks = getBreaksByTournament(allBreaks, tournamentId);
     
     pageState = {
       tournament,
@@ -506,8 +509,7 @@ export async function renderTournamentViewPage({ container, tournamentId }) {
     // Calculate pool standings
     if (tournament.pools) {
       for (const pool of tournament.pools) {
-        const poolMatches = matches.filter((m) => m.poolId === pool.id);
-        pageState.poolStandings[pool.id] = calculatePoolStandings(pool, poolMatches, breaks);
+        pageState.poolStandings[pool.id] = calculatePoolStandings(tournament, pool.id);
       }
     }
     

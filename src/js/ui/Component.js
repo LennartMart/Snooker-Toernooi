@@ -67,6 +67,9 @@ export function createElement(tagName, props = {}, ...children) {
   Object.entries(props).forEach(([key, value]) => {
     if (key === 'className') {
       element.className = value;
+    } else if (key === 'htmlFor') {
+      // Handle htmlFor -> for attribute mapping
+      element.setAttribute('for', value);
     } else if (key === 'style' && typeof value === 'object') {
       Object.assign(element.style, value);
     } else if (key.startsWith('on') && typeof value === 'function') {

@@ -14,6 +14,7 @@ import { generatePools, validatePoolDistribution } from './PoolGeneratorService.
 import { generatePoolMatches, validateMatches } from './MatchGeneratorService.js';
 import { createTournamentConfig, validateTournamentConfig } from './TournamentConfigService.js';
 import { createByePlayers, calculateByesNeeded } from './PlayerService.js';
+import { addTournamentToSeasonById } from './SeasonService.js';
 import { getStorage } from '../storage/index.js';
 import { store, setCurrentTournament, addTournament, updateTournament } from '../store/index.js';
 import { generateUUID, validateTournament } from '../utils/index.js';
@@ -165,6 +166,9 @@ export async function createNewTournament(params) {
 
   // Save to storage
   await saveTournament(tournament);
+
+  // Add tournament to season's tournamentIds
+  await addTournamentToSeasonById(seasonId, tournament.id);
 
   // Update store
   store.dispatch(addTournament(tournament));

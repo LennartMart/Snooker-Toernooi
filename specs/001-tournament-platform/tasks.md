@@ -282,7 +282,7 @@
 **Purpose**: Improvements that affect multiple user stories
 
 - [x] T103 [P] Create TournamentViewPage in src/js/ui/pages/TournamentViewPage.js (overview: pools, brackets, current status)
-- [ ] T104 [P] Create src/pages/tournament-view.html template
+- [x] T104 [P] Create src/pages/tournament-view.html template
 - [x] T105 [P] Create HomePage in src/js/ui/pages/HomePage.js (season overview, quick links to active tournament)
 - [x] T106 Add responsive styling for mobile devices (320px-2560px) across all components
 - [x] T107 Add WCAG 2.1 AA accessibility: focus states, ARIA labels, keyboard navigation

@@ -12,6 +12,9 @@
 @import './components/season-standings.css';
 @import './components/masters-setup.css';
 @import './components/players.css';
+@import './components/seasons.css';
+@import './components/import-dialog.css';
+@import './components/data-management.css';
 @import './responsive.css';
 @import './accessibility.css';
 @import './loading-states.css';
@@ -177,42 +180,82 @@ button:disabled,
   cursor: not-allowed;
 }
 
-.btn-primary {
+.btn-primary,
+.btn--primary {
   background-color: var(--color-primary);
   color: var(--color-text-inverse);
 }
 
-.btn-primary:hover:not(:disabled) {
+.btn-primary:hover:not(:disabled),
+.btn--primary:hover:not(:disabled) {
   background-color: var(--color-primary-dark);
 }
 
-.btn-secondary {
+.btn-secondary,
+.btn--secondary {
   background-color: var(--color-secondary);
   color: var(--color-text-inverse);
 }
 
-.btn-secondary:hover:not(:disabled) {
+.btn-secondary:hover:not(:disabled),
+.btn--secondary:hover:not(:disabled) {
   background-color: var(--color-secondary-dark);
 }
 
-.btn-outline {
+.btn-outline,
+.btn--outline {
   background-color: transparent;
   border: 2px solid var(--color-primary);
   color: var(--color-primary);
 }
 
-.btn-outline:hover:not(:disabled) {
+.btn-outline:hover:not(:disabled),
+.btn--outline:hover:not(:disabled) {
   background-color: var(--color-primary);
   color: var(--color-text-inverse);
 }
 
-.btn-danger {
+.btn-danger,
+.btn--danger {
   background-color: var(--color-error);
   color: var(--color-text-inverse);
 }
 
-.btn-danger:hover:not(:disabled) {
+.btn-danger:hover:not(:disabled),
+.btn--danger:hover:not(:disabled) {
   background-color: #c82333;
+}
+
+.btn--danger-outline {
+  background-color: transparent;
+  border: 2px solid var(--color-error);
+  color: var(--color-error);
+}
+
+.btn--danger-outline:hover:not(:disabled) {
+  background-color: var(--color-error);
+  color: var(--color-text-inverse);
+}
+
+.btn--lg {
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--font-size-lg);
+}
+
+.btn--sm {
+  padding: var(--space-xs) var(--space-md);
+  font-size: var(--font-size-sm);
+}
+
+.btn--text {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  padding: var(--space-xs);
+}
+
+.btn--text:hover:not(:disabled) {
+  text-decoration: underline;
 }
 
 /* Tables */
@@ -258,6 +301,51 @@ tr:hover {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
   margin-bottom: 0;
+}
+
+/* Alerts */
+.alert {
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+}
+
+.alert--info {
+  background-color: rgba(23, 162, 184, 0.1);
+  border: 1px solid #17a2b8;
+  color: #0c5460;
+}
+
+.alert--success {
+  background-color: rgba(40, 167, 69, 0.1);
+  border: 1px solid var(--color-success);
+  color: #155724;
+}
+
+.alert--warning {
+  background-color: rgba(255, 193, 7, 0.1);
+  border: 1px solid var(--color-warning);
+  color: #856404;
+}
+
+.alert--error {
+  background-color: rgba(220, 53, 69, 0.1);
+  border: 1px solid var(--color-danger);
+  color: #721c24;
+}
+
+.alert h4 {
+  margin-bottom: var(--space-sm);
+  font-size: var(--font-size-md);
+}
+
+.alert ul {
+  margin: 0;
+  padding-left: var(--space-lg);
+}
+
+.alert li {
+  margin-bottom: var(--space-xs);
 }
 
 /* Layout */

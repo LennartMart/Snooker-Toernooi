@@ -145,19 +145,24 @@ export function getDefaultConfig(format) {
 export function validateTournamentConfig(config) {
   const errors = [];
 
+  // Support both nested (config.pool.playerCount) and flat (config.playerCount) structures
+  const playerCount = config.playerCount ?? config.pool?.playerCount;
+  const poolCount = config.poolCount ?? config.pool?.poolCount;
+  const poolFrames = config.poolStageFrames ?? config.pool?.framesPerMatch;
+
   // Validate player count
-  if (!config.pool?.playerCount || config.pool.playerCount < 4) {
+  if (!playerCount || playerCount < 4) {
     errors.push('Tournament must have at least 4 players');
   }
 
   // Validate pool count
-  if (!config.pool?.poolCount || config.pool.poolCount < 1) {
+  if (!poolCount || poolCount < 1) {
     errors.push('Tournament must have at least 1 pool');
   }
 
   // Validate players per pool
-  if (config.pool?.playerCount && config.pool?.poolCount) {
-    const playersPerPool = Math.ceil(config.pool.playerCount / config.pool.poolCount);
+  if (playerCount && poolCount) {
+    const playersPerPool = Math.ceil(playerCount / poolCount);
     if (playersPerPool < 2) {
       errors.push('Each pool must have at least 2 players');
     }
@@ -167,18 +172,19 @@ export function validateTournamentConfig(config) {
   }
 
   // Validate frames per match (must be odd for best-of format, except Masters pool)
-  if (config.pool?.framesPerMatch) {
-    if (config.pool.framesPerMatch < 1) {
+  if (poolFrames) {
+    if (poolFrames < 1) {
       errors.push('Frames per match must be at least 1');
     }
-    if (config.pool.framesPerMatch > 35) {
+    if (poolFrames > 35) {
       errors.push('Frames per match cannot exceed 35');
     }
   }
 
-  // Validate knockout frames
-  if (config.knockout?.framesPerRound) {
-    const { quarterFinal, semiFinal, final } = config.knockout.framesPerRound;
+  // Validate knockout frames (support both structures)
+  const knockoutFrames = config.knockoutStageFrames ?? config.knockout?.framesPerRound;
+  if (knockoutFrames) {
+    const { quarterFinal, semiFinal, final } = knockoutFrames;
     
     if (quarterFinal && quarterFinal % 2 === 0) {
       errors.push('Quarter-final frames must be an odd number (best-of format)');

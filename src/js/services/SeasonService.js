@@ -23,9 +23,10 @@ const STORAGE_KEY_CURRENT_SEASON = 'currentSeasonId';
  * @param {string} params.name - Season name
  * @param {number} params.year - Starting year
  * @param {Object} [params.settings] - Season settings
+ * @param {boolean} [params.setAsCurrent=false] - Whether to set this season as current
  * @returns {Promise<import('../models/Season.js').SeasonData>}
  */
-export async function createNewSeason({ name, year, settings = {} }) {
+export async function createNewSeason({ name, year, settings = {}, setAsCurrent = false }) {
   if (!name || name.trim() === '') {
     throw new Error('Season name is required');
   }
@@ -46,6 +47,15 @@ export async function createNewSeason({ name, year, settings = {} }) {
 
   // Update store
   store.dispatch({ type: 'ADD_SEASON', payload: season });
+
+  // Optionally set as current season, or set automatically if no current season exists
+  const storage = getStorage();
+  const currentSeasonId = await storage.getItem(STORAGE_KEY_CURRENT_SEASON);
+  
+  if (setAsCurrent || !currentSeasonId) {
+    await storage.setItem(STORAGE_KEY_CURRENT_SEASON, season.id);
+    store.dispatch({ type: 'SET_CURRENT_SEASON', payload: season });
+  }
 
   return season;
 }

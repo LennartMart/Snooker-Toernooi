@@ -8,6 +8,7 @@ import { createElement, h, render } from '../Component.js';
 import { createPlayerSelector } from '../components/PlayerSelector.js';
 import { createTournamentConfigForm } from '../components/TournamentConfigForm.js';
 import { createNewTournament } from '../../services/TournamentService.js';
+import { getCurrentSeason, createNewSeason, getAllSeasons, setCurrentSeason } from '../../services/SeasonService.js';
 import { store } from '../../store/index.js';
 import { router } from '../router.js';
 
@@ -46,10 +47,10 @@ export function renderTournamentCreatePage(options) {
   let configForm = null;
 
   /**
-   * Gets or creates the current season ID
-   * @returns {string}
+   * Gets or creates a season ID
+   * @returns {Promise<string>}
    */
-  function getSeasonId() {
+  async function getOrCreateSeasonId() {
     if (seasonId) {
       return seasonId;
     }
@@ -59,9 +60,32 @@ export function renderTournamentCreatePage(options) {
       return currentState.currentSeason.id;
     }
     
-    // Create a default season if none exists
-    const defaultSeasonId = 'default-season';
-    return defaultSeasonId;
+    // Try to get current season from storage
+    const currentSeason = await getCurrentSeason();
+    if (currentSeason) {
+      return currentSeason.id;
+    }
+    
+    // Check if any seasons exist for the current year
+    const currentYear = new Date().getFullYear();
+    const existingSeasons = await getAllSeasons();
+    const matchingSeason = existingSeasons.find((s) => s.year === currentYear);
+    
+    if (matchingSeason) {
+      // Set this as the current season and return it
+      await setCurrentSeason(matchingSeason.id);
+      return matchingSeason.id;
+    }
+    
+    // Create a default season if none exists for this year
+    const newSeason = await createNewSeason({
+      name: `${currentYear}-${currentYear + 1}`,
+      year: currentYear,
+    });
+    
+    // Set the newly created season as current
+    await setCurrentSeason(newSeason.id);
+    return newSeason.id;
   }
 
   /**
@@ -135,10 +159,12 @@ export function renderTournamentCreatePage(options) {
     renderPage();
 
     try {
+      const resolvedSeasonId = await getOrCreateSeasonId();
+      
       const tournament = await createNewTournament({
         name: state.configData.name,
         date: state.configData.date,
-        seasonId: getSeasonId(),
+        seasonId: resolvedSeasonId,
         format: state.configData.format,
         playerIds: state.selectedPlayerIds,
         poolCount: state.configData.poolCount,

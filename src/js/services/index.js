@@ -54,41 +54,64 @@ export {
 // Match Generator Service
 export {
   generatePoolMatches,
-  generateRoundRobinMatches,
-  getMatchesByPoolId,
-  getMatchesByTournamentId,
-  getIncompleteMatches,
+  generateKnockoutRoundMatches,
+  linkKnockoutMatches,
+  createByeMatch,
+  calculateMatchCount,
+  validateMatches,
+  getMatchStatistics,
 } from './MatchGeneratorService.js';
 
 // Frame Service
 export {
-  createFrame,
-  updateFrameScore,
-  getFrameWinner,
-  calculateFrameStatus,
-  isFrameComplete,
-  getFramesByMatchId,
+  createFramesForMatch,
+  recordFrameWinner,
+  determineMatchWinner,
+  getFrameCounts,
+  getNextFrameNumber,
+  getCurrentFrame,
+  addFrame,
+  updateFrameInArray,
+  getFrameById,
+  getFrameByNumber,
 } from './FrameService.js';
 
 // Break Service
 export {
-  createBreak,
-  getBreaksByTournamentId,
-  getBreaksByMatchId,
+  recordBreak,
+  getBreakThreshold,
+  getBreaksByMatch,
   getBreaksByPlayer,
+  getBreaksByTournament,
+  getHighestBreak,
   getHighestBreakValue,
   getBreaksAboveThreshold,
-  getTournamentHighBreaks,
+  getPlayerBreakStats,
+  getTournamentBreakStats,
+  sortBreaksByValue,
+  sortBreaksByDate,
+  addBreakToArray,
+  removeBreakFromArray,
 } from './BreakService.js';
 
 // Match Service
 export {
   getMatchById,
-  updateMatchScore,
-  determineMatchWinner,
-  isMatchComplete,
-  calculateMatchScore,
-  getMatchPlayers,
+  updateMatchInTournament,
+  recordFrameResult,
+  recordMatchBreak,
+  completeByeMatch,
+  getMatchesByPool,
+  getMatchesByRound,
+  getPendingMatches,
+  getCompletedMatches,
+  getMatchesByPlayer,
+  getOpponentId,
+  didPlayerWin,
+  getMatchStats,
+  formatMatchResult,
+  startMatch,
+  advanceWinner,
 } from './MatchService.js';
 
 // Pool Standings Service

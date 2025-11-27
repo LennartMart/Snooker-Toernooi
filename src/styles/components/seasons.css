@@ -1,0 +1,213 @@
+/**
+ * Seasons Page Styles
+ */
+
+.seasons-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+.seasons-page__header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.seasons-page__title {
+  margin: 0 0 var(--spacing-xs);
+  font-size: var(--font-size-2xl);
+  color: var(--color-text);
+}
+
+.seasons-page__subtitle {
+  margin: 0 0 var(--spacing-md);
+  color: var(--color-text-muted);
+}
+
+.seasons-page__actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.seasons-page__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.seasons-page__empty {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.seasons-page__empty p {
+  margin: 0 0 var(--spacing-sm);
+}
+
+/* Season Card */
+.season-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.season-card--current {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.season-card__header {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-surface-alt);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.season-card__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.season-card__name {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+}
+
+.season-card__badge {
+  background: var(--color-primary);
+  color: white;
+  font-size: var(--font-size-xs);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.season-card__stats {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.season-card__tournaments {
+  padding: var(--spacing-md);
+  display: grid;
+  gap: var(--spacing-md);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.season-card__empty {
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+
+.season-card__empty p {
+  margin: 0 0 var(--spacing-md);
+}
+
+.season-card__footer {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-surface-alt);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Tournament Card */
+.tournament-card {
+  display: block;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  text-decoration: none;
+  color: inherit;
+  transition: all var(--transition-fast);
+}
+
+.tournament-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.tournament-card:visited {
+  color: inherit;
+}
+
+.tournament-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.tournament-card__name {
+  margin: 0;
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+}
+
+.tournament-card__status {
+  font-size: var(--font-size-xs);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.tournament-card--completed .tournament-card__status {
+  background: var(--color-success-bg, #dcfce7);
+  color: var(--color-success, #166534);
+}
+
+.tournament-card--active .tournament-card__status {
+  background: var(--color-warning-bg, #fef3c7);
+  color: var(--color-warning, #92400e);
+}
+
+.tournament-card--pending .tournament-card__status {
+  background: var(--color-surface-alt);
+  color: var(--color-text-muted);
+}
+
+.tournament-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.tournament-card__meta span::after {
+  content: '•';
+  margin-left: var(--spacing-sm);
+}
+
+.tournament-card__meta span:last-child::after {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .seasons-page {
+    padding: var(--spacing-md);
+  }
+
+  .season-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .season-card__tournaments {
+    grid-template-columns: 1fr;
+  }
+}

@@ -185,7 +185,7 @@ As a tournament organizer, I want to run the Masters finale with its specific fo
 - **FR-031**: System MUST support exporting tournament/season data as downloadable JSON file
 - **FR-032**: System MUST support importing tournament/season data from JSON file
 - **FR-033**: System MUST validate imported JSON data before applying
-- **FR-034**: System SHOULD support Azure Storage as primary data persistence (with local fallback)
+- **FR-034**: System MUST use browser localStorage for data persistence (GitHub Pages compatible); export/import provides manual backup capability
 
 ### Key Entities
 
@@ -212,14 +212,22 @@ As a tournament organizer, I want to run the Masters finale with its specific fo
 
 - **TC-001**: Application MUST be built with Vite as the build tool
 - **TC-002**: Application MUST use vanilla HTML, CSS, and JavaScript (minimal external libraries)
-- **TC-003**: Data MUST be stored as JSON files (preferably in Azure Storage)
+- **TC-003**: Data MUST be stored in browser localStorage (JSON format)
 - **TC-004**: Application MUST support JSON data export functionality
 - **TC-005**: Application MUST support JSON data import functionality
 - **TC-006**: No heavy frameworks (React, Vue, Angular) - vanilla JS only
+- **TC-007**: Application MUST be deployable to GitHub Pages via GitHub Actions workflow
+- **TC-008**: Build output MUST be static files suitable for static hosting (no server-side code)
 
 ## Success Criteria *(mandatory)*
 
-### Measurable Outcomes
+## Clarifications
+
+### Session 2025-11-27
+- Q: Data persistence strategy for GitHub Pages deployment? → A: localStorage with optional manual JSON export/import for backup
+- Q: GitHub Pages deployment method? → A: GitHub Actions workflow (auto-build and deploy on push)
+
+## Measurable Outcomes
 
 - **SC-001**: Tournament organizer can create and configure a complete 32-player tournament in under 5 minutes
 - **SC-002**: Match result entry (including breaks) takes less than 30 seconds per match

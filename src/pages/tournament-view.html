@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tournament View - Snooker Tournament Platform</title>
+  <meta name="description" content="View tournament details, pools, brackets, and standings">
+</head>
+<body>
+  <!-- Tournament View Page Template -->
+  <!-- This template is rendered dynamically by TournamentViewPage.js -->
+  
+  <div class="tournament-view page" role="main">
+    <!-- Header Section -->
+    <header class="tournament-view__header">
+      <div class="tournament-view__title-section">
+        <h1 class="tournament-view__name">Tournament Name</h1>
+        <p class="tournament-view__date">Date</p>
+      </div>
+      <div class="tournament-view__status">
+        <span class="status-badge">Status</span>
+      </div>
+    </header>
+
+    <!-- Progress Section -->
+    <section class="tournament-view__progress" aria-label="Tournament Progress">
+      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar__fill"></div>
+      </div>
+      <p class="progress-text">0 of 0 matches completed</p>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="tournament-view__actions" aria-label="Quick Actions">
+      <a href="#" class="btn btn--primary">Enter Scores</a>
+      <a href="#" class="btn btn--secondary">View Brackets</a>
+      <a href="#" class="btn btn--outline">View Results</a>
+    </section>
+
+    <!-- Pools Section -->
+    <section class="tournament-view__pools" aria-label="Pool Stage">
+      <h2>Pools</h2>
+      <div class="pool-cards">
+        <!-- Pool cards rendered dynamically -->
+        <article class="pool-card">
+          <h3 class="pool-card__name">Pool A</h3>
+          <div class="pool-card__standings">
+            <!-- Mini standings table -->
+          </div>
+          <a href="#" class="pool-card__link">View Pool Details</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Knockout Section -->
+    <section class="tournament-view__knockout" aria-label="Knockout Stage">
+      <h2>Knockout Brackets</h2>
+      <div class="bracket-preview">
+        <!-- Bracket preview rendered dynamically -->
+        <div class="bracket-section">
+          <h3>Winner Bracket</h3>
+          <p class="bracket-status">Not started</p>
+        </div>
+        <div class="bracket-section">
+          <h3>Consolation Bracket</h3>
+          <p class="bracket-status">Not started</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Activity Section -->
+    <section class="tournament-view__activity" aria-label="Recent Activity">
+      <h2>Recent Matches</h2>
+      <ul class="recent-matches">
+        <!-- Recent matches rendered dynamically -->
+        <li class="recent-match">
+          <span class="recent-match__players">Player 1 vs Player 2</span>
+          <span class="recent-match__score">3-1</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Notable Breaks Section -->
+    <section class="tournament-view__breaks" aria-label="Notable Breaks">
+      <h2>High Breaks</h2>
+      <ul class="breaks-list">
+        <!-- Breaks rendered dynamically -->
+        <li class="break-item">
+          <span class="break-item__value">50</span>
+          <span class="break-item__player">Player Name</span>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>

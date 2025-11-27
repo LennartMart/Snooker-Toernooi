@@ -9,17 +9,19 @@ import '../styles/main.css';
 import { router } from './ui/router.js';
 import { store, setCurrentPage, setLoading, setError } from './store/index.js';
 import { getStorage, initializeStorage } from './storage/index.js';
-import { render, createElement, h, showError, showEmpty } from './ui/Component.js';
+import { createElement, h, showError, showEmpty } from './ui/Component.js';
 import { renderTournamentCreatePage } from './ui/pages/TournamentCreatePage.js';
 import { renderMatchEntryPage } from './ui/pages/MatchEntryPage.js';
 import { renderPoolViewPage } from './ui/pages/PoolViewPage.js';
 import { renderKnockoutPage } from './ui/pages/KnockoutPage.js';
 import { renderTournamentResultsPage } from './ui/pages/TournamentResultsPage.js';
+import { renderTournamentViewPage } from './ui/pages/TournamentViewPage.js';
 import { renderMastersPage as renderMastersPageComponent } from './ui/pages/MastersPage.js';
 import { renderMastersSetupPage } from './ui/pages/MastersSetupPage.js';
 import { renderDataManagementPage } from './ui/pages/DataManagementPage.js';
 import { renderHomePage as renderHomePageComponent } from './ui/pages/HomePage.js';
 import { renderPlayersPage as renderPlayersPageComponent, resetPlayersPageState } from './ui/pages/PlayersPage.js';
+import { renderSeasonsPage as renderSeasonsPageComponent, resetSeasonsPageState } from './ui/pages/SeasonsPage.js';
 
 // ============ App Configuration ============
 
@@ -42,23 +44,9 @@ function renderHomePage() {
  */
 function renderSeasonsPage() {
   const container = document.getElementById(APP_CONTAINER_ID);
-  render(
-    container,
-    createElement(
-      'div',
-      { className: 'page page--seasons' },
-      h.h1({}, 'Seasons'),
-      h.p({}, 'Manage your snooker seasons and tournaments.'),
-      h.div(
-        { className: 'season-actions' },
-        h.a({ href: '#/tournament/create', className: 'btn btn--primary' }, '+ Create Tournament')
-      ),
-      h.div(
-        { className: 'season-list' },
-        h.p({ className: 'text-muted' }, 'No seasons yet. Create your first tournament to get started.')
-      )
-    )
-  );
+  // Reset page state when navigating to ensure fresh data
+  resetSeasonsPageState();
+  renderSeasonsPageComponent({ container });
 }
 
 /**
@@ -87,11 +75,10 @@ function renderTournamentCreate() {
  */
 function renderTournamentPage(params) {
   const container = document.getElementById(APP_CONTAINER_ID);
-  showEmpty(
+  renderTournamentViewPage({
     container,
-    `Tournament ${params.id} - Coming in Phase 4`,
-    h.a({ href: '#/', className: 'btn btn--secondary' }, 'Back to Home')
-  );
+    tournamentId: params.id,
+  });
 }
 
 /**
@@ -102,7 +89,7 @@ function renderMatchPage(params) {
   const container = document.getElementById(APP_CONTAINER_ID);
   showEmpty(
     container,
-    `Match ${params.id} - Coming in Phase 5`,
+    `Match ${params.id} - Use tournament match entry to view matches`,
     h.a({ href: '#/', className: 'btn btn--secondary' }, 'Back to Home')
   );
 }
